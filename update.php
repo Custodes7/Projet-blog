@@ -2,13 +2,18 @@
 	
 	require 'database.php';
 
+	if(!empty($_GET['id']))
+	{
+		$id = checkInput($_GET['id']);
+	}
+
 	$titleError = $contentError = $title = $content = "";
 
 	if(!empty($_POST))
-	{
-		$title        	= checkInput($_POST['title']);
-		$content 		= $_POST['content'];
-		$isSuccess      = true;
+		{
+			$title        	= checkInput($_POST['title']);
+			$content 		= $_POST['content'];
+			$isSuccess      = true;
 
 		if (empty($title)) 
 		{
@@ -25,12 +30,23 @@
 		if ($isSuccess) 
 		{
 			$db = Database::connect();
-			$statement = $db->prepare("INSERT INTO Posts (title,content) values(?,?)");
-			$statement->execute(array($title,$content));
+			$statement = $db->prepare("UPDATE Posts SET title = ?, content = ? WHERE id = ?");
+			$statement->execute(array($title,$content,$id));
 			Database::disconnect();
 			header("location: admin.php");
 		}
 
+	}
+	else
+	{
+		$db = Database::connect();
+		$statement = $db->prepare("SELECT * FROM Posts WHERE id = ?");
+		$statement->execute(array($id));
+		$posts = $statement->fetch();
+		$title     		= $posts['title']; 
+		$content    	= $posts['content']; 
+
+		Database::disconnect();
 	}
 
 	function checkInput($data)
@@ -70,7 +86,7 @@
 			</div>
 			<div class="row">
 					<br>
-					<form class="form" role="form" action="insert.php" method="post" enctype="multipart/form-data">
+					<form class="form" role="form" action="<?php echo 'update.php?id=' . $id; ?>" method="post" enctype="multipart/form-data">
 						<div class="form-group">
 							<h3>Titre</h3>
 							<input type="text" name="title" class="form-control" id="title" placeholder="Titre" value="<?php echo $title; ?>">
@@ -78,11 +94,11 @@
 						</div>
 						<div class="form-group">
 							<h3>Contenu</h3>
-							<textarea name="content" id="content"></textarea>
+							<textarea name="content" id="content"><?php echo $content; ?></textarea>
 						</div>
 						<br>
 						<div class="form-actions">
-							<button type="submit" class="btn btn-success"><i class="fas fa-pen-fancy"></i>Ajouter</button>
+							<button type="submit" class="btn btn-success"><i class="fas fa-pen-fancy"></i> Ajouter</button>
 							<a class="btn btn-primary" href="admin.php"><i class="fas fa-arrow-left"></i> Retour</a>
 						</div>
 					</form>
