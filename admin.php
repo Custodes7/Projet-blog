@@ -55,6 +55,9 @@
 					</tbody>
 				</table>
 			</div>
+			<div class="row">
+				<a class="btn btn-primary" href="index.html"><i class="fas fa-arrow-left"></i> Retour</a>
+			</div>
 		</div>
 
 	<!-- Les liaisons aux scripts --> 
