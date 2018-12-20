@@ -1,3 +1,33 @@
+<?php
+	
+	require 'database.php';
+
+	if(!empty($_GET['id']))
+	{
+
+		$id = checkInput($_GET['id']);
+	}
+
+	$db = Database::connect();
+	$statement = $db->prepare("SELECT Posts.id, Posts.title,Posts.chapter, Posts.content
+							FROM Posts 
+							WHERE Posts.id = ?");
+
+	$statement->execute(array($id));
+	$post = $statement->fetch();
+	Database::disconnect();
+
+	function checkInput($data)
+	{
+		$data = trim($data);
+		$data = stripcslashes($data);
+		$data = htmlspecialchars($data);
+		return $data;
+		
+	}
+
+?>
+
 <!DOCTYPE html> 
 <html lang="fr"> 
 	<head> 
@@ -10,33 +40,21 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 
         <link rel="stylesheet" type="text/css" href="css/styles.css">
+
        
 	</head> 
 	<body> 
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12 col-lg-3 text-center">
-					<img src="images/livreblanc.png">
-				</div>
-				<div class="col-sm-12 col-lg-9">
-					<h1>billet simple pour l'Alaska</h1>
-				</div>
+		<div class="row">
+			<div class="col-lg-8 view">
+				<h3 class="text-center title"><?php echo'Chapitre ' . $post["chapter"];?></h3>
+				<br>
+				<h4 class="text-center"><?php echo'' . $post["title"];?></h4>
+				<p><?php echo'' . $post["content"];?></p>
 			</div>
-			<div class="row central-img">
-				<div class="col-ms-6 text-center message">
-					<h2>Bienvenue</h2>
-					<p>l’Ecrivain Jean Forteroche, est heureux de vous présenter son  blog  consacré à son dernier livre « Billet pour l’Alaska ».Chaque semaines venez découvrir un nouveau chapitre et , il ne tient qu’à vous grâce à vos commentaires de faire évoluer l’histoire… </p>
-				</div>
-			</div>
-			<div class="row">
-				<button class="btn btn-info">Accéder aux chapitres</button>
-			</div>
-			<div class="row">
-				<p class="text-center">Jean Forteroche © Tous droits réservés – 2018 <a href="admin.php">Espace administration</a></p>
-			</div>
-
-		</div>	
-
+		</div>
+		<div class="row">
+			<a class="btn btn-primary return" href="admin.php"><i class="fas fa-arrow-left"></i> Retour</a>			
+		</div>
 
 
 	<!-- Les liaisons aux scripts --> 

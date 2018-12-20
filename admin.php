@@ -13,31 +13,49 @@
        
 	</head> 
 	<body> 
-		<div class="container">
+		<div class="container admin">
 			<div class="row">
-				<div class="col-sm-12 col-lg-3 text-center">
-					<img src="images/livreblanc.png">
-				</div>
-				<div class="col-sm-12 col-lg-9">
-					<h1>billet simple pour l'Alaska</h1>
-				</div>
-			</div>
-			<div class="row central-img">
-				<div class="col-ms-6 text-center message">
-					<h2>Bienvenue</h2>
-					<p>l’Ecrivain Jean Forteroche, est heureux de vous présenter son  blog  consacré à son dernier livre « Billet pour l’Alaska ».Chaque semaines venez découvrir un nouveau chapitre et , il ne tient qu’à vous grâce à vos commentaires de faire évoluer l’histoire… </p>
-				</div>
-			</div>
-			<div class="row">
-				<button class="btn btn-info">Accéder aux chapitres</button>
-			</div>
-			<div class="row">
-				<p class="text-center">Jean Forteroche © Tous droits réservés – 2018 <a href="admin.php">Espace administration</a></p>
-			</div>
+				<h3><strong>Liste des Billets </strong><a href="insert.php" class="btn btn-success btn-lg"><i class="fas fa-plus"></i> Ajouter</a></h3>
 
-		</div>	
+				<table class="table table-striped table-bordered">
+					<thead>
+						<tr>
+							<th>Chapitre</th>
+							<th>Titre</th>
+							<th>Date</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php
+						require 'database.php';
+						$db = Database::connect();
+						$statement = $db->query('SELECT Posts.id, Posts.chapter, Posts.title, Posts.date
+												FROM Posts 
+												ORDER BY Posts.date DESC');
+						while($posts = $statement->fetch())
+						{
+							echo'<tr>';
+							echo'<td>' . $posts['chapter'] . '</td>';
+							echo'<td>' . $posts['title'] . '</td>';
+							echo'<td>' . $posts['date'] . '</td>';
+							echo'<td width=400>';
+							echo'<a class="btn btn-default" href="view.php?id=' . $posts['id'].'"><i class="far fa-eye"></i> Voir</a>';
+							echo ' ';
+							echo'<a class="btn btn-primary" href="update.php?id=' . $posts['id'] .'"><i class="fas fa-pen-fancy"></i> Modifier</a>'; 
+							echo ' ';
+							echo'<a class="btn btn-danger" href="delete.php?id=' . $posts['id'] .'"><i class="fas fa-trash-alt"></i> Supprimer</a>'; 
+							echo'</td>';
+							echo'</tr>';
+						}
 
+						Database::disconnect();
+						?>
 
+						
+					</tbody>
+				</table>
+			</div>
+		</div>
 
 	<!-- Les liaisons aux scripts --> 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

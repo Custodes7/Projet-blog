@@ -19,6 +19,26 @@ h2
 {
 	font-weight: bold;
 }
+.title 
+{
+	font-weight: bold;
+	text-transform: uppercase;
+}
+.admin
+{
+	background: #fff;
+	padding: 50px;
+	border-radius: 10px;
+}
+.view
+{
+	border: 2px solid;
+	border-radius: 20px;
+}
+.return
+{
+	margin: 20px;
+}
 .message
 {
 	background-color:#99ccff;
@@ -45,6 +65,14 @@ button
 	border-radius: 20px;
 	margin: 20px auto;
 }
+.content
+{
+	width: 800px;
+	margin: auto;
+}
+
+
+
 
 @media (max-width: 576px) 
 {
