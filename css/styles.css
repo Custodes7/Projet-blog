@@ -24,11 +24,10 @@ h2
 	font-weight: bold;
 	text-transform: uppercase;
 }
-.admin
+.test
 {
-	background: #fff;
-	padding: 50px;
-	border-radius: 10px;
+	width: 800px;
+	margin: auto;
 }
 .view
 {
