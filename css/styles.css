@@ -36,7 +36,7 @@ p
 }
 .central-img
 {
-	height: 750px;
+	height: 700px;
 	background-image: url("../images/alaska.jpg");
 	background-size: cover;
 }
@@ -45,3 +45,35 @@ button
 	border-radius: 20px;
 	margin: 20px auto;
 }
+
+@media (max-width: 576px) 
+{
+.central-img
+{
+	height: 300px;
+}
+.message
+{
+	width: 200px; 
+	height:200px;
+}
+p
+{
+	font-size: 12px;
+}
+} 
+@media (min-width: 768px) 
+{
+.central-img
+{
+	height: 500px;
+}
+} 
+@media (min-width: 992px) 
+{
+	.central-img
+{
+	height: 700px;
+}
+} 
+
