@@ -1,5 +1,23 @@
 <?php
 
+function viewPost($id)
+{
+
+	$db = Database::connect();
+	$statement = $db->prepare("SELECT Posts.id, Posts.title,Posts.chapter, Posts.content
+							FROM Posts 
+							WHERE Posts.id = ?");
+
+	$statement->execute(array($id));
+	$post = $statement->fetch();
+	Database::disconnect();
+	return $post;
+
+}
+
+
+
+
 class Database
 {
 	private static $dbHost = "db761841195.hosting-data.io";
@@ -28,12 +46,12 @@ class Database
 }
 
 function checkInput($data)
-	{
-		$data = trim($data);
-		$data = stripcslashes($data);
-		$data = htmlspecialchars($data);
-		return $data;
-		
-	}
+{
+	$data = trim($data);
+	$data = stripcslashes($data);
+	$data = htmlspecialchars($data);
+	return $data;
+	
+}
 
 ?>

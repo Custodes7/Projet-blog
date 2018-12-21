@@ -1,6 +1,6 @@
 <?php
 	
-	require 'database.php';
+	require 'model.php';
 
 	if(!empty($_GET['id']))
 	{
@@ -47,15 +47,6 @@
 		$content    	= $posts['content']; 
 
 		Database::disconnect();
-	}
-
-	function checkInput($data)
-	{
-		$data = trim($data);
-		$data = stripcslashes($data);
-		$data = htmlspecialchars($data);
-		return $data;
-		
 	}
 ?>
 

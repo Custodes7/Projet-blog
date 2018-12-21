@@ -1,6 +1,6 @@
 <?php
 	
-	require 'database.php';
+	require 'model.php';
 
 	$titleError = $contentError = $title = $content = "";
 
@@ -31,15 +31,6 @@
 			header("location: admin.php");
 		}
 
-	}
-
-	function checkInput($data)
-	{
-		$data = trim($data);
-		$data = stripcslashes($data);
-		$data = htmlspecialchars($data);
-		return $data;
-		
 	}
 ?>
 

@@ -27,7 +27,7 @@
 					</thead>
 					<tbody>
 						<?php
-						require 'database.php';
+						require 'model.php';
 						$db = Database::connect();
 						$statement = $db->query('SELECT Posts.id, Posts.chapter, Posts.title, Posts.date
 												FROM Posts 

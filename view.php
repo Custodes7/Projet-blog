@@ -1,6 +1,6 @@
 <?php
 	
-	require 'database.php';
+	require 'model.php';
 
 	if(!empty($_GET['id']))
 	{
@@ -8,24 +8,7 @@
 		$id = checkInput($_GET['id']);
 	}
 
-	$db = Database::connect();
-	$statement = $db->prepare("SELECT Posts.id, Posts.title,Posts.chapter, Posts.content
-							FROM Posts 
-							WHERE Posts.id = ?");
-
-	$statement->execute(array($id));
-	$post = $statement->fetch();
-	Database::disconnect();
-
-	function checkInput($data)
-	{
-		$data = trim($data);
-		$data = stripcslashes($data);
-		$data = htmlspecialchars($data);
-		return $data;
-		
-	}
-
+	$post = viewPost($id);
 ?>
 
 <!DOCTYPE html> 
