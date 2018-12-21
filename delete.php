@@ -10,11 +10,7 @@
 	if (!empty($_POST)) 
 	{
 		$id = checkInput($_POST['id']);
-		$db = Database::connect();
-		$statement = $db->prepare("DELETE FROM Posts WHERE id = ?");
-		$statement->execute(array($id));
-		Database::disconnect();
-		header("location: admin.php");
+		deletePost($id);
 	}
 ?>
 

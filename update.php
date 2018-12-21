@@ -29,24 +29,15 @@
 
 		if ($isSuccess) 
 		{
-			$db = Database::connect();
-			$statement = $db->prepare("UPDATE Posts SET title = ?, content = ? WHERE id = ?");
-			$statement->execute(array($title,$content,$id));
-			Database::disconnect();
-			header("location: admin.php");
+			updatePost($title,$content,$id);
 		}
 
 	}
 	else
 	{
-		$db = Database::connect();
-		$statement = $db->prepare("SELECT * FROM Posts WHERE id = ?");
-		$statement->execute(array($id));
-		$posts = $statement->fetch();
-		$title     		= $posts['title']; 
-		$content    	= $posts['content']; 
-
-		Database::disconnect();
+		$posts    = hydratePost($id);
+		$title    = $posts['title']; 
+		$content  = $posts['content']; 
 	}
 ?>
 

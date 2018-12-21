@@ -15,7 +15,52 @@ function viewPost($id)
 
 }
 
+function deletePost($id)
+{
 
+	$db = Database::connect();
+	$statement = $db->prepare("DELETE FROM Posts WHERE id = ?");
+	$statement->execute(array($id));
+	Database::disconnect();
+	header("location: admin.php");
+}
+
+function checkInput($data)
+{
+	$data = trim($data);
+	$data = stripcslashes($data);
+	$data = htmlspecialchars($data);
+	return $data;
+	
+}
+
+function insertPost($title,$content)
+{
+	$db = Database::connect();
+	$statement = $db->prepare("INSERT INTO Posts (title,content) values(?,?)");
+	$statement->execute(array($title,$content));
+	Database::disconnect();
+	header("location: admin.php");
+}
+
+function updatePost($title,$content,$id)
+{
+	$db = Database::connect();
+	$statement = $db->prepare("UPDATE Posts SET title = ?, content = ? WHERE id = ?");
+	$statement->execute(array($title,$content,$id));
+	Database::disconnect();
+	header("location: admin.php");
+}
+
+function hydratePost($id)
+{
+	$db = Database::connect();
+		$statement = $db->prepare("SELECT * FROM Posts WHERE id = ?");
+		$statement->execute(array($id));
+		$posts = $statement->fetch();
+		Database::disconnect();
+		return $posts;
+}
 
 
 class Database
@@ -44,14 +89,3 @@ class Database
 		self::$connection = null;
 	}
 }
-
-function checkInput($data)
-{
-	$data = trim($data);
-	$data = stripcslashes($data);
-	$data = htmlspecialchars($data);
-	return $data;
-	
-}
-
-?>

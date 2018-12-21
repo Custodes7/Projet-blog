@@ -24,11 +24,7 @@
 
 		if ($isSuccess) 
 		{
-			$db = Database::connect();
-			$statement = $db->prepare("INSERT INTO Posts (title,content) values(?,?)");
-			$statement->execute(array($title,$content));
-			Database::disconnect();
-			header("location: admin.php");
+			insertPost($title,$content);
 		}
 
 	}
