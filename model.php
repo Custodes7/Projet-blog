@@ -37,7 +37,7 @@ function checkInput($data)
 function insertPost($title,$content)
 {
 	$db = Database::connect();
-	$statement = $db->prepare("INSERT INTO Posts (title,content) values(?,?)");
+	$statement = $db->prepare("INSERT INTO Posts (title,content,date) values(?,?,now())");
 	$statement->execute(array($title,$content));
 	Database::disconnect();
 	header("location: admin.php");

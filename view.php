@@ -1,14 +1,7 @@
 <?php
 	
-	require 'model.php';
-
-	if(!empty($_GET['id']))
-	{
-
-		$id = checkInput($_GET['id']);
-	}
-
-	$post = viewPost($id);
+	require 'controller.php';
+	$post = controllerViewPost();
 ?>
 
 <!DOCTYPE html> 

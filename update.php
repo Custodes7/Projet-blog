@@ -1,44 +1,10 @@
 <?php
 	
-	require 'model.php';
+	require ('controller.php');
+	$post = controllerUpdatePost();
 
-	if(!empty($_GET['id']))
-	{
-		$id = checkInput($_GET['id']);
-	}
 
-	$titleError = $contentError = $title = $content = "";
-
-	if(!empty($_POST))
-		{
-			$title        	= checkInput($_POST['title']);
-			$content 		= $_POST['content'];
-			$isSuccess      = true;
-
-		if (empty($title)) 
-		{
-			$titleError = 'Ce champ ne peut pas être vide';
-			$isSuccess = false;
-		}
-		if (empty($content)) 
-		{
-			$descriptionError = 'Ce champ ne peut pas être vide';
-			$isSuccess = false;
-		}
-		
-
-		if ($isSuccess) 
-		{
-			updatePost($title,$content,$id);
-		}
-
-	}
-	else
-	{
-		$posts    = hydratePost($id);
-		$title    = $posts['title']; 
-		$content  = $posts['content']; 
-	}
+	
 ?>
 
 <!DOCTYPE html> 
@@ -68,15 +34,16 @@
 			</div>
 			<div class="row">
 					<br>
-					<form class="form" role="form" action="<?php echo 'update.php?id=' . $id; ?>" method="post" enctype="multipart/form-data">
+					<form class="form" role="form" action="<?php echo 'update.php?id=' . $_GET['id']; ?>" method="post" enctype="multipart/form-data">
 						<div class="form-group">
 							<h3>Titre</h3>
-							<input type="text" name="title" class="form-control" id="title" placeholder="Titre" value="<?php echo $title; ?>">
+							<input type="text" name="title" class="form-control" id="title" placeholder="Titre" value="<?php echo $post['title']; ?>">
 							<span class="help-inline"><?php echo $titleError; ?></span>
 						</div>
 						<div class="form-group">
 							<h3>Contenu</h3>
-							<textarea name="content" id="content"><?php echo $content; ?></textarea>
+							<textarea name="content" id="content"><?php echo $post['content']; ?></textarea>
+							<span class="help-inline"><?php echo $contentError; ?></span>
 						</div>
 						<br>
 						<div class="form-actions">

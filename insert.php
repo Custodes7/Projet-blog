@@ -1,33 +1,8 @@
 <?php
 	
-	require 'model.php';
+	require ('controller.php');
+	controllerInsertPost();
 
-	$titleError = $contentError = $title = $content = "";
-
-	if(!empty($_POST))
-	{
-		$title        	= checkInput($_POST['title']);
-		$content 		= $_POST['content'];
-		$isSuccess      = true;
-
-		if (empty($title)) 
-		{
-			$titleError = 'Ce champ ne peut pas être vide';
-			$isSuccess = false;
-		}
-		if (empty($content)) 
-		{
-			$descriptionError = 'Ce champ ne peut pas être vide';
-			$isSuccess = false;
-		}
-		
-
-		if ($isSuccess) 
-		{
-			insertPost($title,$content);
-		}
-
-	}
 ?>
 
 <!DOCTYPE html> 
@@ -66,6 +41,7 @@
 						<div class="form-group">
 							<h3>Contenu</h3>
 							<textarea name="content" id="content"></textarea>
+							<span class="help-inline"><?php echo $contentError; ?></span>
 						</div>
 						<br>
 						<div class="form-actions">

@@ -1,17 +1,9 @@
 <?php
 	
-	require 'model.php';
+	require ('controller.php');
+	controllerDeletePost();
 
-	if (!empty($_GET['id'])) 
-	{
-		$id = checkInput($_GET['id']);
-	}
 	
-	if (!empty($_POST)) 
-	{
-		$id = checkInput($_POST['id']);
-		deletePost($id);
-	}
 ?>
 
 <!DOCTYPE html> 
@@ -37,7 +29,7 @@
 				<div class="row">
 					<br> 
 					<form class="form" role="form" action="delete.php" method="post" enctype="multipart/form-data">
-						<input type="hidden" name="id" value="<?php echo $id; ?>">
+						<input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
 						<p class="alert alert-warning">Etes vous sûr de vouloir supprimer ?</p>
 						<div class="form-actions">
 							<button type="submit" class="btn btn-warning"><i class="fas fa-pen-fancy"></i>Oui</button>
