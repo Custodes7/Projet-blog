@@ -11,7 +11,6 @@ function controllerViewPost()
 
 	$post = viewPost($id);
 	return $post;
-
 }
 
 function controllerdeletePost()
