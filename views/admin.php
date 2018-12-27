@@ -45,8 +45,8 @@
 			</table>
 		</div>
 		<div class="row">
-			<a class="btn btn-primary" href="homeView.php"><i class="fas fa-arrow-left"></i> Retour</a>
+			<a class="btn btn-primary" href="view/homeView.php"><i class="fas fa-arrow-left"></i> Retour</a>
 		</div>
 	</div>
 <?php $page_content = ob_get_clean(); ?>
-<?php require('template.php'); ?>
+<?php require('view/template.php'); ?>

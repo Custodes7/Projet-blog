@@ -20,5 +20,5 @@ if  (isset($_GET['action'])) {
 }
 else
 {
-	require 'homeView.php';
+	require 'view/homeView.php';
 }

@@ -11,7 +11,7 @@ function controllerViewPost()
 	}
 
 	$post = $postManager->viewPost($id);
-	require'view.php';
+	require'view/chapterView.php';
 }
 
 function controllerdeletePost()
@@ -20,7 +20,7 @@ function controllerdeletePost()
 	if (!empty($_GET['id'])) 
 	{
 		$id = $postManager->checkInput($_GET['id']);
-		require'delete.php';
+		require'view/deleteView.php';
 	}
 	
 	if (!empty($_POST)) 
@@ -61,7 +61,7 @@ function controllerInsertPost()
 		}
 
 	}
-	require'insert.php';
+	require'view/insertView.php';
 }
 
 function controllerUpdatePost()
@@ -98,13 +98,13 @@ function controllerUpdatePost()
 		}
 
 		$post = $postManager->hydratePost($id);
-		require'update.php';
+		require'view/updateView.php';
 
 	}
 	else
 	{
 		$post = $postManager->hydratePost($id);
-		require'update.php';
+		require'view/updateView.php';
 	}
 }
 

@@ -9,7 +9,7 @@
         <!-- Liaison au fichier Font Awesome --> 
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 
-        <link rel="stylesheet" type="text/css" href="css/styles.css">
+        <link rel="stylesheet" type="text/css" href="../css/styles.css">
         <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
         <script>
             tinymce.init({

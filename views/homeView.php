@@ -3,7 +3,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12 col-lg-3 text-center">
-				<img src="images/livreblanc.png">
+				<img src="../images/livreblanc.png">
 			</div>
 			<div class="col-sm-12 col-lg-9">
 				<h1>billet simple pour l'Alaska</h1>
@@ -19,7 +19,7 @@
 			<button class="btn btn-info">Accéder aux chapitres</button>
 		</div>
 		<div class="row">
-			<p class="text-center">Jean Forteroche © Tous droits réservés – 2018 <a href="index.php?action=admin">Espace administration</a></p>
+			<p class="text-center">Jean Forteroche © Tous droits réservés – 2018 <a href="../index.php?action=admin">Espace administration</a></p>
 		</div>
 
 	</div>	
