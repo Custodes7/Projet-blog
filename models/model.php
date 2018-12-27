@@ -1,5 +1,5 @@
 <?php
-require'database.php'; 
+require'controller/database.php'; 
 class PostManager
 {
 
@@ -39,7 +39,7 @@ public function deletePost($id)
 public function insertPost($title,$content)
 {
 	$db = Database::connect();
-	$statement = $db->prepare("INSERT INTO Posts (title,content,date) values(?,?,now())");
+	$statement = $db->prepare("INSERT INTO Posts (title,content,date(format)) values(?,?,now())");
 	$statement->execute(array($title,$content));
 	Database::disconnect();
 	header("location: index.php?action=admin");

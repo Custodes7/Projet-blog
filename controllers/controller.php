@@ -1,5 +1,5 @@
 <?php
-require 'model.php';
+require 'model/model.php';
 
 function controllerViewPost()
 {
