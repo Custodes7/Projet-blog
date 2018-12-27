@@ -1,24 +1,24 @@
 <?php
 require_once'controller/controller.php';
 
-if  (isset($_GET['action'])) {
-    if ($_GET['action'] == 'admin') {
+switch ($_GET['action']) {
+    case 'admin':
         require'admin.php';
-    }
-    else if ($_GET['action'] == 'view') {
-		controllerViewPost();
-    }
-    else if ($_GET['action'] == 'update') {
+        break;
+    case 'view':
+        controllerViewPost();
+        break;
+    case 'update':
         controllerUpdatePost();
-    }
-    else if ($_GET['action'] == 'delete') {
-		controllerDeletePost();
-    }
-    else if ($_GET['action'] == 'insert') {
+        break;
+    case 'delete':
+        controllerDeletePost();
+        break;
+    case 'insert':
         controllerInsertPost();
-    }
+        break;
+    default:
+        require 'view/homeView.php';
+        break;
 }
-else
-{
-	require 'view/homeView.php';
-}
+   
