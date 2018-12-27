@@ -1,9 +1,3 @@
-<?php
-	
-	require 'controller.php';
-	$post = controllerViewPost();
-?>
-
 <?php $page_title = 'Blog de Jean Forteroche' ?>
 <?php ob_start(); ?>
 
@@ -16,7 +10,7 @@
 			</div>
 		</div>
 		<div class="row test">
-			<a class="btn btn-primary return" href="admin.php"><i class="fas fa-arrow-left"></i> Retour</a>			
+			<a class="btn btn-primary return" href="index.php?action=admin"><i class="fas fa-arrow-left"></i> Retour</a>			
 		</div>
-<?php $content = ob_get_clean(); ?>
+<?php $page_content = ob_get_clean(); ?>
 <?php require('template.php'); ?>

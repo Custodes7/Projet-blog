@@ -1,12 +1,3 @@
-<?php
-	
-	require ('controller.php');
-	$post = controllerUpdatePost();
-
-
-	
-?>
-
 <?php $page_title = 'Blog de Jean Forteroche' ?>
 <?php ob_start(); ?>
 		<div class="container">
@@ -15,7 +6,7 @@
 			</div>
 			<div class="row">
 					<br>
-					<form class="form" role="form" action="<?php echo 'update.php?id=' . $_GET['id']; ?>" method="post" enctype="multipart/form-data">
+					<form class="form" role="form" action="<?php echo 'index.php?id=' . $_GET['id'].'&action=update'; ?>" method="post" enctype="multipart/form-data">
 						<div class="form-group">
 							<h3>Titre</h3>
 							<input type="text" name="title" class="form-control" id="title" placeholder="Titre" value="<?php echo $post['title']; ?>">
@@ -29,7 +20,7 @@
 						<br>
 						<div class="form-actions">
 							<button type="submit" class="btn btn-success"><i class="fas fa-pen-fancy"></i> Ajouter</button>
-							<a class="btn btn-primary" href="admin.php"><i class="fas fa-arrow-left"></i> Retour</a>
+							<a class="btn btn-primary" href="index.php?action=admin"><i class="fas fa-arrow-left"></i> Retour</a>
 						</div>
 					</form>
 				</div>

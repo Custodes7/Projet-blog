@@ -3,37 +3,43 @@ require 'model.php';
 
 function controllerViewPost()
 {
+	$postManager = new PostManager(); 
 	if(!empty($_GET['id']))
 	{
 
-		$id = checkInput($_GET['id']);
+		$id = $postManager->checkInput($_GET['id']);
 	}
 
-	$post = viewPost($id);
-	return $post;
+	$post = $postManager->viewPost($id);
+	require'view.php';
 }
 
 function controllerdeletePost()
 {
+	$postManager = new PostManager(); 
 	if (!empty($_GET['id'])) 
 	{
-		$id = checkInput($_GET['id']);
+		$id = $postManager->checkInput($_GET['id']);
+		require'delete.php';
 	}
 	
 	if (!empty($_POST)) 
 	{
-		$id = checkInput($_POST['id']);
-		deletePost($id);
+		$id = $postManager->checkInput($_POST['id']);
+		$postManager->deletePost($id);
+		header("location: index.php?action=admin");
 	}
+
 }
 
 function controllerInsertPost()
 {
+	$postManager = new PostManager(); 
 	$titleError = $contentError = $title = $content = "";
 
 	if(!empty($_POST))
 	{
-		$title        	= checkInput($_POST['title']);
+		$title        	= $postManager->checkInput($_POST['title']);
 		$content 		= $_POST['content'];
 		$isSuccess      = true;
 
@@ -51,24 +57,26 @@ function controllerInsertPost()
 
 		if ($isSuccess) 
 		{
-			insertPost($title,$content);
+			$postManager->insertPost($title,$content);
 		}
 
 	}
+	require'insert.php';
 }
 
 function controllerUpdatePost()
 {
+	$postManager = new PostManager(); 
 	if(!empty($_GET['id']))
 	{
-		$id = checkInput($_GET['id']);
+		$id = $postManager->checkInput($_GET['id']);
 	}
 
 	$titleError = $contentError = $title = $content = "";
 
 	if(!empty($_POST))
-		{
-			$title        	= checkInput($_POST['title']);
+	{
+			$title        	= $postManager->checkInput($_POST['title']);
 			$content 		= $_POST['content'];
 			$isSuccess      = true;
 
@@ -86,14 +94,17 @@ function controllerUpdatePost()
 
 		if ($isSuccess) 
 		{
-			updatePost($title,$content,$id);
+			$postManager->updatePost($title,$content,$id);
 		}
+
+		$post = $postManager->hydratePost($id);
+		require'update.php';
 
 	}
 	else
 	{
-		$posts    = hydratePost($id);
-		return $posts;
+		$post = $postManager->hydratePost($id);
+		require'update.php';
 	}
 }
 

@@ -1,6 +1,18 @@
 <?php
+require'database.php'; 
+class PostManager
+{
 
-function viewPost($id)
+public function checkInput($data)
+{
+	$data = trim($data);
+	$data = stripcslashes($data);
+	$data = htmlspecialchars($data);
+	return $data;
+	
+}
+
+public function viewPost($id)
 {
 
 	$db = Database::connect();
@@ -15,44 +27,34 @@ function viewPost($id)
 
 }
 
-function deletePost($id)
+public function deletePost($id)
 {
 
 	$db = Database::connect();
 	$statement = $db->prepare("DELETE FROM Posts WHERE id = ?");
 	$statement->execute(array($id));
 	Database::disconnect();
-	header("location: admin.php");
 }
 
-function checkInput($data)
-{
-	$data = trim($data);
-	$data = stripcslashes($data);
-	$data = htmlspecialchars($data);
-	return $data;
-	
-}
-
-function insertPost($title,$content)
+public function insertPost($title,$content)
 {
 	$db = Database::connect();
 	$statement = $db->prepare("INSERT INTO Posts (title,content,date) values(?,?,now())");
 	$statement->execute(array($title,$content));
 	Database::disconnect();
-	header("location: admin.php");
+	header("location: index.php?action=admin");
 }
 
-function updatePost($title,$content,$id)
+public function updatePost($title,$content,$id)
 {
 	$db = Database::connect();
 	$statement = $db->prepare("UPDATE Posts SET title = ?, content = ? WHERE id = ?");
 	$statement->execute(array($title,$content,$id));
 	Database::disconnect();
-	header("location: admin.php");
+	header("location: index.php?action=admin");
 }
 
-function hydratePost($id)
+public function hydratePost($id)
 {
 	$db = Database::connect();
 		$statement = $db->prepare("SELECT * FROM Posts WHERE id = ?");
@@ -62,30 +64,4 @@ function hydratePost($id)
 		return $posts;
 }
 
-
-class Database
-{
-	private static $dbHost = "db761841195.hosting-data.io";
-	private static $dbName = "db761841195";
-	private static $dbUser = "dbo761841195";
-	private static $dbUserPassword = "Custodes_7";
-	private static $connection = null;
-
-	public static function connect()
-	{
-		try
-		{
-			self::$connection = new PDO("mysql:host=" . self::$dbHost . ";dbname=" . self::$dbName,self::$dbUser,self::$dbUserPassword);
-		}
-		catch(PDOException $e)
-		{
-			die($e->getMessage);
-		}
-		return self::$connection;
-	}
-
-	public static function disconnect()
-	{
-		self::$connection = null;
-	}
 }

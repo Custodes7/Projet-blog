@@ -1,0 +1,4 @@
+AuthName "Page d'administration protégée"
+AuthType Basic
+AuthUserFile "/homepages/33/d749706762/htdocs/BookBlog/admin/.htpasswd"
+Require valid-user
