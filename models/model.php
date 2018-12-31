@@ -12,6 +12,26 @@ public function checkInput($data)
 	
 }
 
+public function adminTable()
+{
+	$db = Database::connect();
+	$statement = $db->query('SELECT Posts.id, Posts.chapter, Posts.title, Posts.date
+							FROM Posts 
+							ORDER BY Posts.date DESC');
+	Database::disconnect();
+	return $statement;
+}
+
+public function listPost()
+{
+	$db = Database::connect();
+	$statement = $db->query('SELECT Posts.id, Posts.chapter, Posts.title, Posts.date, Posts.content
+							FROM Posts 
+							ORDER BY Posts.date DESC');
+	Database::disconnect();
+	return $statement;
+}						
+
 public function viewPost($id)
 {
 

@@ -3,10 +3,10 @@ require_once'controller/controller.php';
 
 switch ($_GET['action']) {
     case 'user':
-        require'view/userView.php';
+        controllerUserView();
         break;
     case 'admin':
-        require 'admin.php';
+       controllerAdminTable();
         break;
     case 'view':
         controllerViewPost();

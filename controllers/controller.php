@@ -1,6 +1,20 @@
 <?php
 require 'model/model.php';
 
+function controllerAdminTable()
+{
+	$postManager = new PostManager(); 
+	$statement = $postManager->adminTable();
+	require'view/adminView.php';
+}
+
+function controllerUserView()
+{
+	$postManager = new PostManager(); 
+	$statement = $postManager->listPost();
+	require'view/userView.php';
+}
+
 function controllerViewPost()
 {
 	$postManager = new PostManager(); 
