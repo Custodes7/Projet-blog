@@ -8,8 +8,9 @@
 				echo'<h3 class="text-center title">Chapitre '. $posts["chapter"] . '</h3>';
 				echo'<br>';
 				echo'<h4 class="text-center">'. $posts["title"] . '</h4>';
-				echo'<p>'. $posts["content"] .'<a class="btn btn-default return" href="#"><i class="fas fa-book-open"></i> Lire la suite</a>	'.'</p>';
+				echo'<p>'. $posts['content'] .'</p>';
 				echo'</div>';
+				echo'<a class="btn btn-default return" href="#"><i class="fas fa-book-open"></i> Lire la suite</a>';
 				echo'</div>';
 				echo'<br>';
 			}

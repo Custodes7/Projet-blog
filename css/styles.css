@@ -27,7 +27,9 @@ h2
 .test
 {
 	width: 800px;
+	height: 300px;
 	margin: auto;
+	padding-top: 20px;
 }
 .view
 {
@@ -37,10 +39,12 @@ h2
 .viewPost
 {
 	border: 2px solid;
+	height: 200px;
+	overflow: hidden;
 }
 .return
 {
-	margin: 20px;
+	height:40px;
 }
 .message
 {
