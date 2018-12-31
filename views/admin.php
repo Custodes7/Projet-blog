@@ -1,8 +1,27 @@
 <?php
+function AdminTable(){
 	$db = Database::connect();
 	$statement = $db->query('SELECT Posts.id, Posts.chapter, Posts.title, Posts.date
 							FROM Posts 
 							ORDER BY Posts.date DESC');
+	while($posts = $statement->fetch())
+					{
+						echo'<tr>';
+						echo'<td>' . $posts['chapter'] . '</td>';
+						echo'<td>' . $posts['title'] . '</td>';
+						echo'<td>' . $posts['date'] . '</td>';
+						echo'<td width=400>';
+						echo'<a class="btn btn-default" href="index.php?id=' . $posts['id'].'&action=view"><i class="far fa-eye"></i> Voir</a>';
+						echo ' ';
+						echo'<a class="btn btn-primary" href="index.php?id=' . $posts['id'] .'&action=update"><i class="fas fa-pen-fancy"></i> Modifier</a>'; 
+						echo ' ';
+						echo'<a class="btn btn-danger" href="index.php?id=' . $posts['id'] .'&action=delete"><i class="fas fa-trash-alt"></i> Supprimer</a>'; 
+						echo'</td>';
+						echo'</tr>';
+					}
+
+					Database::disconnect();
+}					
 ?>
 
 <?php $page_title = 'Blog de Jean Forteroche' ?>
@@ -21,26 +40,8 @@
 				</thead>
 				<tbody>
 					<?php
-					while($posts = $statement->fetch())
-					{
-						echo'<tr>';
-						echo'<td>' . $posts['chapter'] . '</td>';
-						echo'<td>' . $posts['title'] . '</td>';
-						echo'<td>' . $posts['date'] . '</td>';
-						echo'<td width=400>';
-						echo'<a class="btn btn-default" href="index.php?id=' . $posts['id'].'&action=view"><i class="far fa-eye"></i> Voir</a>';
-						echo ' ';
-						echo'<a class="btn btn-primary" href="index.php?id=' . $posts['id'] .'&action=update"><i class="fas fa-pen-fancy"></i> Modifier</a>'; 
-						echo ' ';
-						echo'<a class="btn btn-danger" href="index.php?id=' . $posts['id'] .'&action=delete"><i class="fas fa-trash-alt"></i> Supprimer</a>'; 
-						echo'</td>';
-						echo'</tr>';
-					}
-
-					Database::disconnect();
+					AdminTable();
 					?>
-
-					
 				</tbody>
 			</table>
 		</div>

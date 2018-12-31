@@ -34,6 +34,10 @@ h2
 	border: 2px solid;
 	border-radius: 20px;
 }
+.viewPost
+{
+	border: 2px solid;
+}
 .return
 {
 	margin: 20px;
@@ -59,7 +63,7 @@ p
 	background-image: url("../images/alaska.jpg");
 	background-size: cover;
 }
-button
+#user
 {
 	border-radius: 20px;
 	margin: 20px auto;

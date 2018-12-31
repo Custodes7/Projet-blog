@@ -16,7 +16,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<button class="btn btn-info">Accéder aux chapitres</button>
+			<a id="user" href="../index.php?action=user"><button class="btn btn-info">Accéder aux chapitres</button></a>
 		</div>
 		<div class="row">
 			<p class="text-center">Jean Forteroche © Tous droits réservés – 2018 <a href="../index.php?action=admin">Espace administration</a></p>
