@@ -1,17 +1,6 @@
-<?php
-function listPost(){
-	$db = Database::connect();
-	$statement = $db->query('SELECT Posts.id, Posts.chapter, Posts.title, Posts.date, Posts.content
-							FROM Posts 
-							ORDER BY Posts.date DESC');
-	Database::disconnect();
-	return $statement;
-}			
-?>
 <?php $page_title = 'Blog de Jean Forteroche' ?>
 <?php ob_start(); ?>
 <?php
-		$statement = listPost();
 		while($posts = $statement->fetch())
 			{
 				echo'<div class="row test jumbotron">';
@@ -19,7 +8,7 @@ function listPost(){
 				echo'<h3 class="text-center title">Chapitre '. $posts["chapter"] . '</h3>';
 				echo'<br>';
 				echo'<h4 class="text-center">'. $posts["title"] . '</h4>';
-				echo'<p>'. $posts["content"] .'<a class="btn btn-default return" href="#"><i class="far fa-eye"></i> Lire la suite</a>	'.'</p>';
+				echo'<p>'. $posts["content"] .'<a class="btn btn-default return" href="#"><i class="fas fa-book-open"></i> Lire la suite</a>	'.'</p>';
 				echo'</div>';
 				echo'</div>';
 				echo'<br>';
