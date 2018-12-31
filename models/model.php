@@ -12,6 +12,18 @@ public function checkInput($data)
 	
 }
 
+public function chapterNumber()
+{
+	$db = Database::connect();
+	$statement = $db->query('SELECT max(chapter) AS maxchapter FROM Posts');
+	while($posts = $statement->fetch())
+			{
+				$result = $posts["maxchapter"]+1;
+			}
+	Database::disconnect();
+	return $result;
+}
+
 public function adminTable()
 {
 	$db = Database::connect();
@@ -56,11 +68,11 @@ public function deletePost($id)
 	Database::disconnect();
 }
 
-public function insertPost($title,$content)
+public function insertPost($title,$content,$chapter)
 {
 	$db = Database::connect();
-	$statement = $db->prepare("INSERT INTO Posts (title,content,date(format)) values(?,?,now())");
-	$statement->execute(array($title,$content));
+	$statement = $db->prepare("INSERT INTO Posts (title,content,chapter,date) values(?,?,?,now())");
+	$statement->execute(array($title,$content,$chapter));
 	Database::disconnect();
 	header("location: index.php?action=admin");
 }

@@ -70,8 +70,9 @@ function controllerInsertPost()
 		
 
 		if ($isSuccess) 
-		{
-			$postManager->insertPost($title,$content);
+		{	
+			$chapter = $postManager->chapterNumber();
+			$postManager->insertPost($title,$content,$chapter);
 		}
 
 	}
