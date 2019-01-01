@@ -10,7 +10,7 @@
 				echo'<h4 class="text-center">'. $posts["title"] . '</h4>';
 				echo'<p>'. $posts['content'] .'</p>';
 				echo'</div>';
-				echo'<a class="btn btn-default return" href="#"><i class="fas fa-book-open"></i> Lire la suite</a>';
+				echo'<a class="btn btn-default return" href="view/postAndCommentView.php?id='. $posts["id"] .'"><i class="fas fa-book-open"></i> Lire la suite</a>';
 				echo'</div>';
 				echo'<br>';
 			}
